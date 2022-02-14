@@ -8,14 +8,21 @@ export const typeDefs = gql`
     nums: [Int]
     color(colorId: ID): Color
     colors: [Color]
+    cars(make: String): [Car]
   }
 
-  """
-  Color Object Type
-  """
   type Color {
     id: ID
     name: String
     hexcode: String
+  }
+
+  type Car {
+    id: ID
+    make: String
+    model: String
+    year: Int
+    color: String
+    price: Float
   }
 `;

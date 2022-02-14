@@ -23,6 +23,18 @@ export const resolvers = {
       const res = await fetch("http://localhost:5050/colors");
       return await res.json();
     },
+    async cars(_, { make }) {
+      
+      let url = "http://localhost:5050/cars";
+
+      if (make) {
+        const makeParam = encodeURIComponent(make);
+        url = `${url}?make=${makeParam}`;
+      }
+
+      const res = await fetch(url);
+      return await res.json();
+    },
   },
   Color: {
     // default resolver for all fields

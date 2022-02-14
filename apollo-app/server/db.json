@@ -41,6 +41,22 @@
       "price": 45000
     },
     {
+      "id": 3,
+      "make": "Ford",
+      "model": "F-150",
+      "year": 2019,
+      "color": "blue",
+      "price": 50000
+    },
+    {
+      "id": 4,
+      "make": "Ford",
+      "model": "Explorer",
+      "year": 2018,
+      "color": "yellow",
+      "price": 50000
+    },
+    {
       "id": 2,
       "make": "Tesla",
       "model": "S",
