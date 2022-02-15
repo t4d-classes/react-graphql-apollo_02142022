@@ -12,8 +12,17 @@ export const typeDefs = gql`
     books: [Book]
   }
 
+  type Mutation {
+    appendColor(color: NewColor): Color
+  }
+
   type Color {
     id: ID
+    name: String
+    hexcode: String
+  }
+
+  input NewColor {
     name: String
     hexcode: String
   }

@@ -40,6 +40,18 @@ export const resolvers = {
       return await res.json();
     },    
   },
+  Mutation: {
+    async appendColor(_, { color }, { restUrl }) {
+
+      const res = await fetch(`${restUrl}/colors`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(color),
+      });
+
+      return await res.json();
+    },
+  },
   Car: {
     formattedPrice(car, args) {
       console.log(args);

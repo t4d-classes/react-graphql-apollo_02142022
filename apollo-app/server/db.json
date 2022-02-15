@@ -29,6 +29,16 @@
       "name": "purple",
       "hexcode": "ff00ff",
       "id": 7
+    },
+    {
+      "name": "orange",
+      "hexcode": "ffff00",
+      "id": 8
+    },
+    {
+      "name": "yellow",
+      "hexcode": "00ffff",
+      "id": 9
     }
   ],
   "cars": [
