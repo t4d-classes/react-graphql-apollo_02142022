@@ -39,6 +39,10 @@ export const resolvers = {
       const res = await fetch("http://localhost:5050/books");
       return await res.json();
     },    
+    async carExteriorColors() {
+      const res = await fetch("http://localhost:5050/carExteriorColors");
+      return await res.json();
+    },    
   },
   Mutation: {
     async appendColor(_, { color }, { restUrl }) {
@@ -47,6 +51,16 @@ export const resolvers = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(color),
+      });
+
+      return await res.json();
+    },
+    async appendCar(_, { car }, { restUrl }) {
+
+      const res = await fetch(`${restUrl}/cars`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(car),
       });
 
       return await res.json();

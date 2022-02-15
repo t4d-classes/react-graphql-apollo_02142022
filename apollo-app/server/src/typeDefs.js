@@ -10,10 +10,12 @@ export const typeDefs = gql`
     colors: [Color]
     cars(make: String): [Car]
     books: [Book]
+    carExteriorColors: [String]
   }
 
   type Mutation {
     appendColor(color: NewColor): Color
+    appendCar(car: NewCar): Car
   }
 
   type Color {
@@ -36,6 +38,14 @@ export const typeDefs = gql`
     price: Float
     formattedPrice(currencyCode: String): String
   }
+
+  input NewCar {
+    make: String
+    model: String
+    year: Int
+    color: String
+    price: Float
+  }  
 
   type Book {
     id: ID

@@ -1,5 +1,9 @@
 {
-  "carExteriorColors": [ "red", "green", "blue" ],
+  "carExteriorColors": [
+    "red",
+    "green",
+    "blue"
+  ],
   "colors": [
     {
       "id": 1,
@@ -79,6 +83,38 @@
       "year": 2018,
       "color": "red",
       "price": 100000
+    },
+    {
+      "make": "Ford",
+      "model": "Explorer",
+      "year": 2022,
+      "color": "red",
+      "price": 60000,
+      "id": 5
+    },
+    {
+      "make": "a",
+      "model": "a",
+      "year": 1900,
+      "color": "",
+      "price": 0,
+      "id": 6
+    },
+    {
+      "make": "a",
+      "model": "a",
+      "year": 1900,
+      "color": "green",
+      "price": 0,
+      "id": 7
+    },
+    {
+      "make": "a",
+      "model": "a",
+      "year": 1900,
+      "color": "",
+      "price": 2,
+      "id": 8
     }
   ],
   "authors": [
