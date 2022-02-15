@@ -4,11 +4,12 @@ import { BookISBNList, BookPriceList } from './components/BookList';
 import { CarTable } from './components/CarTable';
 
 const APP_QUERY = gql`
+  ${CarTable.fragments.cars}
   ${BookISBNList.fragments.books}
   ${BookPriceList.fragments.books}
   query App {
     cars {
-      id make model year color price
+      ...CarTable_Cars
     }
     isbnBooks: books {
       ...BookISBNListBooks
