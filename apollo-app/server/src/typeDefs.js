@@ -24,5 +24,6 @@ export const typeDefs = gql`
     year: Int
     color: String
     price: Float
+    formattedPrice(currencyCode: String): String
   }
 `;

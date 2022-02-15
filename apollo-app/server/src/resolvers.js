@@ -36,6 +36,12 @@ export const resolvers = {
       return await res.json();
     },
   },
+  Car: {
+    formattedPrice(car, args) {
+      console.log(args);
+      return car.price + " " + args.currencyCode;
+    }
+  },
   Color: {
     // default resolver for all fields
     // id(color) {
