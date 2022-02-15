@@ -1,8 +1,13 @@
 import { useQuery, gql } from '@apollo/client';
 
+import { CarTable } from './components/CarTable';
+
 const APP_QUERY = gql`
   query App {
     message
+    cars {
+      id make model year color price
+    }
   }
 `;
 
@@ -14,7 +19,7 @@ function App() {
   if (error) return <p>Error</p>;
 
   return (
-    <p>{data.message}</p>
+    <CarTable cars={data.cars} />
   );
 
 }
