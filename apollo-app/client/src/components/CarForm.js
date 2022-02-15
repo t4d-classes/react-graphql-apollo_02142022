@@ -32,7 +32,7 @@ export const CarForm = ({ buttonText, onSubmitCar, colorLookup }) => {
       </label>
       <label>
         Color
-        <select name="color" onChange={change}>
+        <select name="color" value={carForm.color} onChange={change}>
           {colorLookup.map(color =>
             <option key={color} value={color}>{color}</option>)}
         </select>

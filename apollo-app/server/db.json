@@ -49,6 +49,16 @@
       "name": "a",
       "hexcode": "a",
       "id": 10
+    },
+    {
+      "name": "a",
+      "hexcode": "a",
+      "id": 11
+    },
+    {
+      "name": "g",
+      "hexcode": "g",
+      "id": 12
     }
   ],
   "cars": [
@@ -115,6 +125,14 @@
       "color": "",
       "price": 2,
       "id": 8
+    },
+    {
+      "make": "a",
+      "model": "a",
+      "year": 1900,
+      "color": "",
+      "price": 0,
+      "id": 9
     }
   ],
   "authors": [
