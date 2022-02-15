@@ -35,7 +35,7 @@ CarTable.defaultProps = {
 
 CarTable.propTypes = {
   cars: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]).isRequired,
     make: PropTypes.string.isRequired,
     model: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,

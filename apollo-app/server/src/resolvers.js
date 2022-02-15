@@ -35,6 +35,10 @@ export const resolvers = {
       const res = await fetch(url);
       return await res.json();
     },
+    async books() {
+      const res = await fetch("http://localhost:5050/books");
+      return await res.json();
+    },    
   },
   Car: {
     formattedPrice(car, args) {

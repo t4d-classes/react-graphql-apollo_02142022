@@ -9,6 +9,7 @@ export const typeDefs = gql`
     color(colorId: ID): Color
     colors: [Color]
     cars(make: String): [Car]
+    books: [Book]
   }
 
   type Color {
@@ -25,5 +26,15 @@ export const typeDefs = gql`
     color: String
     price: Float
     formattedPrice(currencyCode: String): String
+  }
+
+  type Book {
+    id: ID
+    isbn: String
+    title: String
+    authorId: ID
+    category: String
+    price: Float
+    quantity: Int
   }
 `;
