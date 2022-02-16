@@ -5,9 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "run-p rest web",
+    "start": "run-p rest rest-airline web",
     "rest": "json-server --port 5050 db.json",
-    "web": "nodemon --no-warnings --ignore 'db.json' src/index.js"
+    "rest-airline": "json-server --port 5055 airline-data.json",
+    "web": "nodemon --no-warnings --ignore 'db.json' --ignore 'airline-data.json' src/index.js"
   },
   "keywords": [],
   "author": "",

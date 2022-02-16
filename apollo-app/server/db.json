@@ -19,46 +19,6 @@
       "id": 3,
       "name": "blue",
       "hexcode": "#0000ff"
-    },
-    {
-      "name": "purple",
-      "hexcode": "ff00ff",
-      "id": 4
-    },
-    {
-      "name": "purple",
-      "hexcode": "ff00ff",
-      "id": 6
-    },
-    {
-      "name": "purple",
-      "hexcode": "ff00ff",
-      "id": 7
-    },
-    {
-      "name": "orange",
-      "hexcode": "ffff00",
-      "id": 8
-    },
-    {
-      "name": "yellow",
-      "hexcode": "00ffff",
-      "id": 9
-    },
-    {
-      "name": "a",
-      "hexcode": "a",
-      "id": 10
-    },
-    {
-      "name": "a",
-      "hexcode": "a",
-      "id": 11
-    },
-    {
-      "name": "g",
-      "hexcode": "g",
-      "id": 12
     }
   ],
   "cars": [
@@ -93,46 +53,6 @@
       "year": 2018,
       "color": "red",
       "price": 100000
-    },
-    {
-      "make": "Ford",
-      "model": "Explorer",
-      "year": 2022,
-      "color": "red",
-      "price": 60000,
-      "id": 5
-    },
-    {
-      "make": "a",
-      "model": "a",
-      "year": 1900,
-      "color": "",
-      "price": 0,
-      "id": 6
-    },
-    {
-      "make": "a",
-      "model": "a",
-      "year": 1900,
-      "color": "green",
-      "price": 0,
-      "id": 7
-    },
-    {
-      "make": "a",
-      "model": "a",
-      "year": 1900,
-      "color": "",
-      "price": 2,
-      "id": 8
-    },
-    {
-      "make": "a",
-      "model": "a",
-      "year": 1900,
-      "color": "",
-      "price": 0,
-      "id": 9
     }
   ],
   "authors": [
@@ -186,7 +106,7 @@
     },
     {
       "firstName": "Sally",
-      "lastName": "Thomas",
+      "lastName": "Lee",
       "phoneNumber": "123-123-1234",
       "id": 9
     },

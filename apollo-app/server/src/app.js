@@ -16,8 +16,10 @@ export const getApp = async () => {
   const proxy = httpProxy.createProxyServer({});
 
   app = express();
+
+  const [ apollo, httpServer, subscriptionServer ] = await getApollo(app);
   
-  (await getApollo()).applyMiddleware({ app, path: '/graphql' });
+  apollo.applyMiddleware({ app, path: '/graphql' });
   
   app.use('/', function app(req, res) {
     proxy.web(
@@ -31,7 +33,7 @@ export const getApp = async () => {
     );
   });
 
-  return app; 
+  return [ apollo, httpServer, subscriptionServer ]; 
 
 };
 
