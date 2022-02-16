@@ -1,4 +1,7 @@
+import { gql } from '@apollo/client';
+
 import { useForm } from '..//hooks/useForm';
+
 
 export const CarEditRow = ({
   car,
@@ -43,4 +46,12 @@ export const CarEditRow = ({
   );
 
 
+};
+
+CarEditRow.fragments = {
+  car: gql`
+    fragment CarEditRow_Car on Car {
+      id make model year color price
+    }
+  `
 };

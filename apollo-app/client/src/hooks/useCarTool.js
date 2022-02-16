@@ -1,4 +1,4 @@
-import { useQuery, gql, useMutation } from '@apollo/client';
+import { useQuery, gql, useMutation, makeVar, useReactiveVar } from '@apollo/client';
 import { useCallback } from 'react';
 
 import { CarTable } from '../components/CarTable';
@@ -26,11 +26,44 @@ const APPEND_CAR_MUTATION = gql`
   }
 `;
 
+const REPLACE_CAR_MUTATION = gql`
+  mutation ReplaceCar($car: ExistingCar) {
+    replaceCar(car: $car) {
+      id
+      make
+      model
+      year
+      color
+      price
+    }
+  }
+`;
+
+const REMOVE_CAR_MUTATION = gql`
+  mutation RemoveCar($carId: ID) {
+    removeCar(carId: $carId) {
+      id
+      make
+      model
+      year
+      color
+      price
+    }
+  }
+`;
+
+
+const editCarIdVar = makeVar(-1);
+
 export const useCarTool = () => {
+
+  const editCarId = useReactiveVar(editCarIdVar);
 
   const { loading, error, data } = useQuery(CAR_TOOL_QUERY);
 
   const [ mutateAppendCar ] = useMutation(APPEND_CAR_MUTATION);
+  const [ mutateReplaceCar ] = useMutation(REPLACE_CAR_MUTATION);
+  const [ mutateRemoveCar ] = useMutation(REMOVE_CAR_MUTATION);
 
   const addCar = useCallback(car => {
 
@@ -41,14 +74,45 @@ export const useCarTool = () => {
       refetchQueries: [ { query: CAR_TOOL_QUERY } ],
     });
 
-  }, [mutateAppendCar]);  
+  }, [mutateAppendCar]);
+
+  const saveCar = useCallback(car => {
+
+    return mutateReplaceCar({
+      variables: {
+        car,
+      },
+      refetchQueries: [ { query: CAR_TOOL_QUERY } ],
+    });
+
+  }, [mutateReplaceCar]);
+
+  const deleteCar = useCallback(carId => {
+
+    return mutateRemoveCar({
+      variables: {
+        carId,
+      },
+      refetchQueries: [ { query: CAR_TOOL_QUERY } ],
+    });
+
+  }, [mutateRemoveCar]);
+
+  const editCar = useCallback(carId => editCarIdVar(carId), []);
+
+  const cancelCar = useCallback(() => editCarIdVar(-1), []);
 
   return {
     loading,
     error,
     cars: data?.cars ?? [],
+    editCarId,
     colorLookup: data?.carExteriorColors ?? [],
     addCar,
+    saveCar,
+    deleteCar,
+    editCar,
+    cancelCar,
   };
 
 };

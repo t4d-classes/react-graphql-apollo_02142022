@@ -1,10 +1,17 @@
 import PropTypes from 'prop-types';
 import { gql } from '@apollo/client';
 
-
+import { CarEditRow } from './CarEditRow';
 import { CarViewRow } from './CarViewRow';
 
-export const CarTable = ({ cars }) => {
+
+export const CarTable = ({
+  cars, editCarId,
+  onEditCar: editCar,
+  onDeleteCar: deleteCar,
+  onSaveCar: saveCar,
+  onCancelCar: cancelCar,
+}) => {
 
   return (
     <table>
@@ -16,11 +23,16 @@ export const CarTable = ({ cars }) => {
           <th>Year</th>
           <th>Color</th>
           <th>Price</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         {cars.map(car =>
-          <CarViewRow key={car.id} car={car} />)}
+          car.id === editCarId
+          ? <CarEditRow key={car.id} car={car}
+              onSaveCar={saveCar} onCancelCar={cancelCar} />
+          : <CarViewRow key={car.id} car={car}
+              onEditCar={editCar} onDeleteCar={deleteCar} />)}
       </tbody>
     </table>
   )
@@ -45,9 +57,11 @@ CarTable.propTypes = {
 CarTable.fragments = {
   cars: gql`
     ${CarViewRow.fragments.car}
+    ${CarEditRow.fragments.car}
     fragment CarTable_Cars on Car {
       id
       ...CarViewRow_Car
+      ...CarEditRow_Car
     }
   `
 }
