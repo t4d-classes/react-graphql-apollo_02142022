@@ -1,13 +1,24 @@
-import { useState } from 'react';
+import { useReactiveVar, useQuery, gql } from '@apollo/client';
+
+import { activeToolVar } from './vars';
 
 import { ColorTool } from './components/ColorTool';
 import { BookTool } from './components/BookTool';
 import { CarTool } from './components/CarTool';
 
 
+const APP_QUERY = gql`
+  query App {
+    activeTool @client
+  }
+`;
+
+
 function App() {
 
-  const [ activeTool, setActiveTool ] = useState('color-tool');
+  // const activeTool = useReactiveVar(activeToolVar);
+
+  const { data: { activeTool } } = useQuery(APP_QUERY);
 
   let ActiveToolComp;
 
@@ -27,7 +38,7 @@ function App() {
   return (
     <>
       <select value={activeTool}
-        onChange={e => setActiveTool(e.target.value)}>
+        onChange={e => activeToolVar(e.target.value)}>
         <option value="color-tool">Color Tool</option>
         <option value="book-tool">Book Tool</option>
         <option value="car-tool">Car Tool</option>

@@ -5,7 +5,7 @@ import { BookISBNList, BookPriceList } from '../components/BookList';
 const BOOK_TOOL_QUERY = gql`
   ${BookISBNList.fragments.books}
   ${BookPriceList.fragments.books}
-  query App {
+  query BookTool {
     isbnBooks: books {
       ...BookISBNListBooks
     }

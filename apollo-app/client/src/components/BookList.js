@@ -4,7 +4,7 @@ export const BookISBNList = ({ books }) => {
   return (
     <ul>
       {books.map(book => <li key={book.id}>
-        {book.title} {book.isbn}
+        {book.title} {book.isbn} {book.category}
       </li>)}
     </ul>
   );
@@ -16,6 +16,7 @@ BookISBNList.fragments = {
       id
       title
       isbn
+      category
     }
   ` 
 };
