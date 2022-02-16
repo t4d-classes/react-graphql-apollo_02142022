@@ -16,6 +16,8 @@ export const typeDefs = gql`
   type Mutation {
     appendColor(color: NewColor): Color
     appendCar(car: NewCar): Car
+    replaceCar(car: ExistingCar): Car
+    removeCar(carId: ID): Car
   }
 
   type Color {
@@ -45,7 +47,16 @@ export const typeDefs = gql`
     year: Int
     color: String
     price: Float
-  }  
+  }
+
+  input ExistingCar {
+    id: ID
+    make: String
+    model: String
+    year: Int
+    color: String
+    price: Float
+  }    
 
   type Book {
     id: ID

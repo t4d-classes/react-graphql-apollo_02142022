@@ -65,36 +65,48 @@ export const useCarTool = () => {
   const [ mutateReplaceCar ] = useMutation(REPLACE_CAR_MUTATION);
   const [ mutateRemoveCar ] = useMutation(REMOVE_CAR_MUTATION);
 
-  const addCar = useCallback(car => {
+  const addCar = useCallback(async car => {
 
-    return mutateAppendCar({
+    const result = await mutateAppendCar({
       variables: {
         newCar: car,
       },
       refetchQueries: [ { query: CAR_TOOL_QUERY } ],
     });
 
+    editCarIdVar(-1);
+
+    return result;
+
   }, [mutateAppendCar]);
 
-  const saveCar = useCallback(car => {
+  const saveCar = useCallback(async car => {
 
-    return mutateReplaceCar({
+    const result = await mutateReplaceCar({
       variables: {
         car,
       },
       refetchQueries: [ { query: CAR_TOOL_QUERY } ],
     });
 
+    editCarIdVar(-1);
+
+    return result;
+
   }, [mutateReplaceCar]);
 
-  const deleteCar = useCallback(carId => {
+  const deleteCar = useCallback(async carId => {
 
-    return mutateRemoveCar({
+    const result = await mutateRemoveCar({
       variables: {
         carId,
       },
       refetchQueries: [ { query: CAR_TOOL_QUERY } ],
     });
+
+    editCarIdVar(-1);
+
+    return result;
 
   }, [mutateRemoveCar]);
 

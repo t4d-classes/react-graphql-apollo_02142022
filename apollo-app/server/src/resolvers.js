@@ -65,6 +65,34 @@ export const resolvers = {
 
       return await res.json();
     },
+    async replaceCar(_, { car }, { restUrl }) {
+
+      const carId = encodeURIComponent(car.id);
+
+      await fetch(`${restUrl}/cars/${carId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(car),
+      });
+
+      const res = await fetch(`${restUrl}/cars/${carId}`);
+
+      return await res.json();
+    },
+    async removeCar(_, { carId }, { restUrl }) {
+
+      const encodedCarId = encodeURIComponent(carId);
+      const elementUrl = `${restUrl}/cars/${encodedCarId}`;
+
+      const res = await fetch(elementUrl);
+      const deletedCar = await res.json();
+
+      await fetch(elementUrl, {
+        method: 'DELETE',
+      });
+
+      return deletedCar;
+    },
   },
   Car: {
     formattedPrice(car, args) {
