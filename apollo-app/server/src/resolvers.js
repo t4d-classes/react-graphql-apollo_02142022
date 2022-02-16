@@ -1,4 +1,7 @@
 import fetch from 'node-fetch';
+import { PubSub } from 'graphql-subscriptions';
+
+const pubsub = new PubSub();
 
 export const resolvers = {
   Query: {
@@ -39,10 +42,6 @@ export const resolvers = {
       const res = await fetch("http://localhost:5050/books");
       return await res.json();
     },    
-    async carExteriorColors() {
-      const res = await fetch("http://localhost:5050/carExteriorColors");
-      return await res.json();
-    },    
   },
   Mutation: {
     async appendColor(_, { color }, { restUrl }) {
@@ -65,7 +64,13 @@ export const resolvers = {
         body: JSON.stringify(car),
       });
 
-      return await res.json();
+      const appendedCar = await res.json();
+
+      pubsub.publish('CAR_APPENDED', {
+        carAppended: appendedCar,
+      });
+
+      return appendedCar;
     },
     async replaceCar(_, { car }, { restUrl }) {
 
@@ -94,6 +99,13 @@ export const resolvers = {
       });
 
       return deletedCar;
+    },
+  },
+  Subscription: {
+    carAppended: {
+      subscribe: () => {
+        return pubsub.asyncIterator(['CAR_APPENDED'])
+      },
     },
   },
   Car: {

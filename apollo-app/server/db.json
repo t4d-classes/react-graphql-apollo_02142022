@@ -55,28 +55,44 @@
       "price": 100000
     },
     {
-      "make": "a",
-      "model": "a",
-      "year": 1900,
-      "color": "",
-      "price": 0,
-      "id": 5
+      "make": "Ford",
+      "model": "F-250",
+      "year": 2022,
+      "color": "blue",
+      "price": 70000,
+      "id": 8
     },
     {
-      "make": "b",
-      "model": "b",
+      "make": "t",
+      "model": "t",
       "year": 1900,
       "color": "",
       "price": 0,
-      "id": 6
+      "id": 9
     },
     {
-      "make": "c",
-      "model": "c",
+      "make": "f",
+      "model": "f",
       "year": 1900,
       "color": "",
       "price": 0,
-      "id": 7
+      "id": 10
+    },
+    {
+      "make": "y",
+      "model": "y",
+      "year": 1900,
+      "color": "",
+      "price": 0,
+      "id": 11
+    },
+    {
+      "make": "i",
+      "model": "i",
+      "year": 1900,
+      "color": "",
+      "price": 0,
+      "id": 12
     }
   ],
   "authors": [

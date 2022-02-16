@@ -10,7 +10,6 @@ export const typeDefs = gql`
     colors: [Color]
     cars(make: String): [Car]
     books: [Book]
-    carExteriorColors: [String]
   }
 
   type Mutation {
@@ -18,6 +17,10 @@ export const typeDefs = gql`
     appendCar(car: NewCar): Car
     replaceCar(car: ExistingCar): Car
     removeCar(carId: ID): Car
+  }
+
+  type Subscription {
+    carAppended: Car
   }
 
   type Color {

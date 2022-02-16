@@ -1,4 +1,7 @@
-import { useQuery, gql, useMutation, makeVar, useReactiveVar } from '@apollo/client';
+import { 
+  useQuery, useMutation, useSubscription,
+  gql, makeVar, useReactiveVar,
+} from '@apollo/client';
 import { useCallback } from 'react';
 
 import { CarTable } from '../components/CarTable';
@@ -9,7 +12,12 @@ const CAR_TOOL_QUERY = gql`
     cars {
       ...CarTable_Cars
     }
-    carExteriorColors
+    carExteriorColors @rest(type: "[String]", path: "carExteriorColors")
+    moreCars @rest(type: "[FunCar]", path: "cars") {
+      id
+      make
+      model
+    }
   }
 `;
 
@@ -52,6 +60,19 @@ const REMOVE_CAR_MUTATION = gql`
   }
 `;
 
+const CAR_APPENDED_SUBSCRIPTION = gql`
+  subscription CarAppended {
+    carAppended {
+      id
+      make
+      model
+      year
+      color
+      price
+    }
+  }
+`;
+
 
 const editCarIdVar = makeVar(-1);
 
@@ -60,6 +81,32 @@ export const useCarTool = () => {
   const editCarId = useReactiveVar(editCarIdVar);
 
   const { loading, error, data } = useQuery(CAR_TOOL_QUERY);
+
+  // useSubscription(
+  //   CAR_APPENDED_SUBSCRIPTION,
+  //   {
+  //     onSubscriptionData: ({
+  //       client, subscriptionData: { data: { carAppended } },
+  //     }) => {
+
+  //       if (!carAppended) {
+  //         return;
+  //       }
+
+  //       const originalData = client.readQuery({ query: CAR_TOOL_QUERY });
+
+  //       const data = {
+  //         ...originalData,
+  //         cars: [
+  //           ...originalData.cars,
+  //           carAppended,
+  //         ],
+  //       };
+
+  //       client.writeQuery({ query: CAR_TOOL_QUERY, data });      
+  //     },
+  //   },
+  // );
 
   const [ mutateAppendCar ] = useMutation(APPEND_CAR_MUTATION);
   const [ mutateReplaceCar ] = useMutation(REPLACE_CAR_MUTATION);
@@ -72,30 +119,25 @@ export const useCarTool = () => {
         newCar: car,
       },
       // refetchQueries: [ { query: CAR_TOOL_QUERY } ],
-      optimisticResponse: {
-        appendCar: {
-          ...car,
-          id: Math.floor(Math.random() * -10000),
-          __typename: "Car",
-        }
-      },
-      update(cache, response) {
-
-        const originalData = cache.readQuery({ query: CAR_TOOL_QUERY });
-
-        const data = {
-          ...originalData,
-          cars: [
-            ...originalData.cars,
-            response?.data?.appendCar,
-          ],
-        };
-
-        console.log(response?.data?.appendCar?.id);
-
-        cache.writeQuery({ query: CAR_TOOL_QUERY, data });
-
-      }
+      // optimisticResponse: {
+      //   appendCar: {
+      //     ...car,
+      //     id: Math.floor(Math.random() * -10000),
+      //     __typename: "Car",
+      //   }
+      // },
+      // update(cache, response) {
+      //   const originalData = cache.readQuery({ query: CAR_TOOL_QUERY });
+      //   const data = {
+      //     ...originalData,
+      //     cars: [
+      //       ...originalData.cars,
+      //       response?.data?.appendCar,
+      //     ],
+      //   };
+      //   console.log(response?.data?.appendCar?.id);
+      //   cache.writeQuery({ query: CAR_TOOL_QUERY, data });
+      // }
     });
 
     editCarIdVar(-1);
