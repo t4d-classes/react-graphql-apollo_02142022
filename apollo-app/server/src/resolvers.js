@@ -57,6 +57,8 @@ export const resolvers = {
     },
     async appendCar(_, { car }, { restUrl }) {
 
+      // throw new Error("something went wrong...");
+
       const res = await fetch(`${restUrl}/cars`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

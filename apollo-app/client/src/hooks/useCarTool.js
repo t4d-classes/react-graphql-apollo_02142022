@@ -71,7 +71,31 @@ export const useCarTool = () => {
       variables: {
         newCar: car,
       },
-      refetchQueries: [ { query: CAR_TOOL_QUERY } ],
+      // refetchQueries: [ { query: CAR_TOOL_QUERY } ],
+      optimisticResponse: {
+        appendCar: {
+          ...car,
+          id: Math.floor(Math.random() * -10000),
+          __typename: "Car",
+        }
+      },
+      update(cache, response) {
+
+        const originalData = cache.readQuery({ query: CAR_TOOL_QUERY });
+
+        const data = {
+          ...originalData,
+          cars: [
+            ...originalData.cars,
+            response?.data?.appendCar,
+          ],
+        };
+
+        console.log(response?.data?.appendCar?.id);
+
+        cache.writeQuery({ query: CAR_TOOL_QUERY, data });
+
+      }
     });
 
     editCarIdVar(-1);

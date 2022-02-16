@@ -53,6 +53,30 @@
       "year": 2018,
       "color": "red",
       "price": 100000
+    },
+    {
+      "make": "a",
+      "model": "a",
+      "year": 1900,
+      "color": "",
+      "price": 0,
+      "id": 5
+    },
+    {
+      "make": "b",
+      "model": "b",
+      "year": 1900,
+      "color": "",
+      "price": 0,
+      "id": 6
+    },
+    {
+      "make": "c",
+      "model": "c",
+      "year": 1900,
+      "color": "",
+      "price": 0,
+      "id": 7
     }
   ],
   "authors": [
