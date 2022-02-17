@@ -14,7 +14,7 @@ export const CarViewRow = ({
       <td>{car.model}</td>
       <td>{car.year}</td>
       <td>{car.color}</td>
-      <td>{car.price}</td>
+      <td>{car.formattedPrice}</td>
       <td>
         <button type="button" onClick={() => editCar(car.id)}>Edit</button>
         <button type="button" onClick={() => deleteCar(car.id)}>Delete</button>
@@ -24,10 +24,18 @@ export const CarViewRow = ({
 
 };
 
+// CarViewRow.fragments = {
+//   car: gql`
+//     fragment CarViewRow_Car on Car {
+//       id make model year color price
+//     }
+//   `
+// };
+
 CarViewRow.fragments = {
   car: gql`
     fragment CarViewRow_Car on Car {
-      id make model year color price
+      id make model year color formattedPrice(currencyCode: $currencyCode)
     }
   `
 };

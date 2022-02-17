@@ -5,6 +5,7 @@ import { activeToolVar } from './vars';
 import { ColorTool } from './components/ColorTool';
 import { BookTool } from './components/BookTool';
 import { CarTool } from './components/CarTool';
+import { FlightTool } from './components/FlightTool';
 
 
 const APP_QUERY = gql`
@@ -29,6 +30,9 @@ function App() {
     case 'car-tool':
       ActiveToolComp = CarTool;
       break;
+    case 'flight-tool':
+      ActiveToolComp = FlightTool;
+      break;      
     default:
       ActiveToolComp = ColorTool;
       break;
@@ -42,6 +46,7 @@ function App() {
         <option value="color-tool">Color Tool</option>
         <option value="book-tool">Book Tool</option>
         <option value="car-tool">Car Tool</option>
+        <option value="flight-tool">Flight Tool</option>        
       </select>
       <ActiveToolComp />
     </>

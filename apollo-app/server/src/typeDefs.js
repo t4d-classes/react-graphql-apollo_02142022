@@ -10,6 +10,7 @@ export const typeDefs = gql`
     colors: [Color]
     cars(make: String): [Car]
     books: [Book]
+    flights(offset: Int, limit: Int): [Flight]
   }
 
   type Mutation {
@@ -22,6 +23,15 @@ export const typeDefs = gql`
   type Subscription {
     carAppended: Car
   }
+
+  type Flight {
+    id: ID
+    tailNum: String
+    origin: String
+    destination: String
+    departureTime: Float
+    arrivalTime: Float
+  }  
 
   type Color {
     id: ID

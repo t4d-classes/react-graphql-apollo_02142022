@@ -45,7 +45,13 @@ export const client = new ApolloClient({
             read() {
               return activeToolVar();
             }
-          }
+          },
+          flights: {
+            keyArgs: false,
+            merge(existing = [], incoming) {
+              return [ ...existing, ...incoming ];
+            },
+          },
         },
       },
     },

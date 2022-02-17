@@ -8,7 +8,7 @@ import { CarTable } from '../components/CarTable';
 
 const CAR_TOOL_QUERY = gql`
   ${CarTable.fragments.cars}
-  query App {
+  query CarTool($currencyCode: String) {
     cars {
       ...CarTable_Cars
     }
@@ -80,7 +80,9 @@ export const useCarTool = () => {
 
   const editCarId = useReactiveVar(editCarIdVar);
 
-  const { loading, error, data } = useQuery(CAR_TOOL_QUERY);
+  const { loading, error, data } = useQuery(
+    CAR_TOOL_QUERY,
+    { variables: { currencyCode: 'EUR' } });
 
   // useSubscription(
   //   CAR_APPENDED_SUBSCRIPTION,

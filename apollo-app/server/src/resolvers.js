@@ -41,7 +41,21 @@ export const resolvers = {
     async books() {
       const res = await fetch("http://localhost:5050/books");
       return await res.json();
-    },    
+    },
+    async flights(_, { offset, limit }, { airlineRestUrl }) {
+      const page = (!offset || !limit) ? 1 : Math.floor(offset / limit) + 1;
+      const res = await fetch(
+        `${airlineRestUrl}/flights?_page=${page}&_limit=${limit ?? 10}`);
+      const flightResults = await res.json();
+      return flightResults.map(flight => ({
+        id: flight.flNum + "-" + flight.origin + "-" + flight.dest,
+        tailNum: flight.tailNum,
+        origin: flight.origin,
+        destination: flight.dest,
+        departureTime: flight.depTime,
+        arrivalTime: flight.arrTime,
+      }));
+    }       
   },
   Mutation: {
     async appendColor(_, { color }, { restUrl }) {
